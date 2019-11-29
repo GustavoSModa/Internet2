@@ -17,7 +17,7 @@
 	<!-- Site Title -->
 	<title>Mona´s</title>
     <link rel="shortcut icon" href="img/icon.png">
-
+    <script src="comprar.js"></script>
 	<!--
             CSS
             ============================================= -->
@@ -83,7 +83,23 @@
 		</div>
 	</section>
 	<!-- End Banner Area -->
-    	
+    	<script>
+            $.getJASON("http://localhost:3000/produto, function(result)"){
+                var arr = result;
+            string html=`<div class="col-lg-3 col-md-6">
+                        <div class="single-product">`
+            for(var i = 0; i<arr.lenght; i++)
+                {
+                    arr[i].id;
+                    arr[i].codigo;
+                    var nome = arr[i].nome;
+                    var imagem = arr[i].imagem;
+                    var preco = arr[i].preco;
+                    html += `<img class="img-fluid" src="../img/product/${imagem}" alt="">` + '<div class="product-details">' + `<h6>${nome}</h6>` + `<div class="price">		<h6 id="preco">R$${preco}</h6> </div>`+ `<div class="prd-bottom"><a href="cart.html" class="social-info"> <span class="ti-bag">/span><class="hover-text">comprar</p></a></div></div></div></div>`
+                }
+                $('#produto').innerHTML(html)
+            }
+    </script>
 	<!-- single product slide -->
 		<div class="single-product-slider">
 			<div class="container">
@@ -95,48 +111,34 @@
 						</div>
 					</div>
 				</div>
-
-
+            </div>
+            </div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
-						<div class="single-product">
-							<img class="img-fluid" src="img/product/p1.jpg" alt="">
-							<div class="product-details">
-								<h6>Addidas NMD R1
-									vermelho</h6>
-								<div class="price">
-									<h6>R$599.99</h6>
-									<h6 class="l-through">R$699.99</h6>
-								</div>
-								<div class="prd-bottom">
+                    
+                    
+                    <div id="produto">
+                    </div>
+                    </div>
+                
 
-									
-									<a href="" class="social-info">
-										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p2.jpg" alt="">
 							<div class="product-details">
-								<h6>Addidas NMD R1
+								<h6 id="nome">Addidas NMD R1
 									creme </h6>
 								<div class="price">
-									<h6>R$599.99</h6>
+									<h6 id="preco">R$599.99</h6>
 									
 								</div>
 								<div class="prd-bottom">
 
 							
-									<a href="" class="social-info">
+									<a id="codigo" href="cart.html" class="social-info">
 										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
+										<p class="hover-text">comprar</p>
 									</a>
 								</div>
 							</div>
@@ -147,17 +149,17 @@
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p3.jpg" alt="">
 							<div class="product-details">
-								<h6>Addidas yeezy DSRT BT
+								<h6 id="nome">Addidas yeezy DSRT BT
 									</h6>
 								<div class="price">
-									<h6>R$999.99</h6>
+									<h6 id="preco">R$999.99</h6>
 									
 								</div>
 								<div class="prd-bottom">
 								
-									<a href="" class="social-info">
+									<a id="codigo" href="cart.html" class="social-info">
 										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
+										<p class="hover-text">comprar</p>
 									</a>
 								</div>
 							</div>
@@ -166,20 +168,20 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="img/product/p4.jpg" alt="">
+							<img id="img" class="img-fluid" src="img/product/p4.jpg" alt="">
 							<div class="product-details">
-								<h6> Nike air Jordar 1 high
+								<h6 id="nome"> Nike air Jordan 1 high
 									</h6>
 								<div class="price">
-									<h6>R$599.99</h6>
+									<h6 id="preco">R$599.99</h6>
 									
 								</div>
 								<div class="prd-bottom">
 
 									
-									<a href="" class="social-info">
+									<a id="codigo" href="cart.html" class="social-info">
 										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
+										<p class="hover-text">comprar</p>
 									</a>
 								</div>
 							</div>
@@ -190,29 +192,18 @@
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p5.jpg" alt="">
 							<div class="product-details">
-								<h6>Nike air force 1 NBA</h6>
+								< h6 id="nome">Nike air force 1 NBA</h6>
 								<div class="price">
-									<h6>R$400.00</h6>
+									< h6 id="preco">R$400.00</h6>
 									<h6 class="l-through">R$459.00</h6>
 								</div>
 								<div class="prd-bottom">
 
-									<a href="" class="social-info">
+									<a id="codigo" href="cart.html" class="social-info">
 										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
+										<p class="hover-text">comprar</p>
 									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-heart"></span>
-										<p class="hover-text">Wishlist</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-sync"></span>
-										<p class="hover-text">compare</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-move"></span>
-										<p class="hover-text">view more</p>
-									</a>
+								
 								</div>
 							</div>
 						</div>
@@ -222,17 +213,17 @@
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p6.jpg" alt="">
 							<div class="product-details">
-								<h6>Balenciaga Speed Trainer</h6>
+								< h6 id="nome">Balenciaga Speed Trainer</h6>
 								<div class="price">
-									<h6>$5000.00</h6>
+									< h6 id="preco">$5000.00</h6>
 									
 								</div>
 								<div class="prd-bottom">
 
 									
-									<a href="" class="social-info">
+									<a id="codigo" href="cart.html" class="social-info">
 										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
+										<p class="hover-text" >comprar</p>
 									</a>
 								</div>
 							</div>
@@ -243,17 +234,17 @@
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p7.jpg" alt="">
 							<div class="product-details">
-								<h6>Addidas Yeezy boost 350</h6>
+								< h6 id="nome">Addidas Yeezy boost 350</h6>
 								<div class="price">
-									<h6>R$2400.00</h6>
+									< h6 id="preco">R$2400.00</h6>
 									
 								</div>
 								<div class="prd-bottom">
 
 									
-									<a href="" class="social-info">
+									<a id="codigo" href="cart.html" class="social-info">
 										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
+										<p class="hover-text">comprar</p>
 									</a>
 								</div>
 							</div>
@@ -264,17 +255,18 @@
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p8.jpg" alt="">
 							<div class="product-details">
-								<h6>Nike Air Max 97</h6>
+								< h6 id="nome">Nike Air Max 97</h6>
 								<div class="price">
-									<h6>$699.99</h6>
+									< h6 id="preco">$699.99</h6>
 									
 								</div>
 								<div class="prd-bottom">
 
 									
-									<a href="" class="social-info">
+									<a id="codigo" href="cart.html" class="social-info">
 										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
+                                        
+										<p class="hover-text">comprar</p>
 									</a>
 								</div>
 							</div>
@@ -286,7 +278,7 @@
 				
 				<!-- End Best Seller -->
 				
-    
+
 	<!-- End related-product Area -->
 
 	<!-- start footer Area -->
