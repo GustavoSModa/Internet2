@@ -1,7 +1,8 @@
-var conexao = require("../config/custom-mssql.js");
 
 
 module.exports = (app) => {
+    var conexao = require("../config/custom-mssql.js");
+
     function execSQL(sql, resposta){
         global.conexao.request()
         .query(sql)
@@ -73,6 +74,50 @@ module.exports = (app) => {
                 res.redirect("login.html");
             }
         });
+    });
+
+    app.post("/comprar", function(req, res){
+        console.log(req.body);
+        var quantity = req.body.quantity;
+        var nome     = req.body.nome;
+
+        var bd = `select quantidade from pordutoLoja where nome = '${nome}'`;
+
+        var quantidade = bd - quantity;
+
+        if(quantidade < 0){
+            quantidade = 0;
+        }
+
+        var msg = `update produtoLoja set quantidade = ${quantidade} where nome = '${nome}`;
+
+        execSQL(msg, res);
+        res.redirect("/");
+        
+    });
+
+    app.get("/produto", function(req, res){
+        var msg = "select * from produtoLoja";
+        execSQL(msg, res);
+
+    
+
+        /* $.getJSON(http://localhost:3000/produto, function(result){
+            var arr = result;
+            String html = "<div>"
+            for(var i = 0; i < arr.length; i++)
+            {
+                arr[i].id
+                arr[i].codigo
+                arr[i].nome
+                var img = arr[i].imagem;
+                html += "<img src=img>"
+            }
+            $(#).innerHtml(html);
+
+            
+        }); */
+
     });
 
 }
