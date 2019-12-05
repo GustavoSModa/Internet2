@@ -244,16 +244,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             <div class="single-product">`;
     	for(var i = 0; i<arr.length; i++) {
 	        arr[i].id;
-    	    arr[i].codigo;
+    	    var codigo = arr[i].codigo;
         	var nome = arr[i].nome;
         	var imagem = arr[i].imagem;
         	var preco = arr[i].preco;
-        	html += `<img class="img-fluid" src="../img/product/${imagem}" alt="">` + '<div class="product-details">' + `<h6>${nome}</h6>` + `<div class="price">		<h6 id="preco">R$${preco}</h6> </div>`+ `<div class="prd-bottom"><a href="cart.html" class="social-info"> <span class="ti-bag"></span><p class="hover-text">comprar</p></a></div></div></div></div>`;
+        	html += `<img class="img-fluid" src="../img/product/${imagem}" alt="">` + '<div class="product-details">' + `<h6>${nome}</h6>` + `<div class="price">		<h6 id="preco">R$${preco}</h6> </div>`+ `<div class="prd-bottom"><a href="cart.html" onclick="carrinho(${codigo})" id="${codigo}" class="social-info"> <span class="ti-bag"></span><p class="hover-text">comprar</p></a></div></div></div></div>`;
     	}
 
     	$('#produto').html(html);
 		});
 	});	  
+
+	carrinho=(id)=>{
+		sessionStorage.removeItem("carrinho", JSON.stringify(identities));
+		var identities = new Array();
+		if (!sessionStorage.getItem("carrinho")) 
+			sessionStorage.setItem("carrinho", JSON.stringify(identities));
+
+		var itens = JSON.parse(sessionStorage.getItem("carrinho"));
+		itens.push(id);
+		console.log(itens);
+		sessionStorage.setItem("carrinho", itens);
+
+		console.log(sessionStorage.getItem("carrinho"));
+	}
+
 </script>
 
 	<script src="../js/vendor/jquery-2.2.4.min.js"></script> 
