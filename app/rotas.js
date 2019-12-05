@@ -100,6 +100,14 @@ module.exports = (app) => {
         var msg = "select * from produtoLoja";
         execSQL(msg, res);
 
+    app.get("carrinho", function(req, res){
+        console.log(req.body);
+
+        var itens = JSON.parse(sessionStorage.getItem("carrinho"));
+        for(var i=0; i<itens.length; i++){
+            var msg = `select * from produtoLoja`;
+        }
+    });
     
 
         /* $.getJSON(http://localhost:3000/produto, function(result){
